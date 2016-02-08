@@ -7,8 +7,9 @@ import {
 	Validators
 } from 'angular2/common';
 
-import SearchService from '../../services/SearchService';
 import Movie from '../../models/movie';
+import SearchService from '../../services/SearchService';
+import MovieService from '../../services/MovieService';
 
 @Component({
 	selector: 'search',
@@ -44,7 +45,7 @@ export default class SearchComponent {
 	form: ControlGroup;
 	results: Movie[]
 	
-	constructor(fb: FormBuilder, public service: SearchService) {
+	constructor(fb: FormBuilder, public service: SearchService, public movies: MovieService) {
 		this.form = fb.group({
 			'query': ['', Validators.required]
 		});
@@ -69,6 +70,6 @@ export default class SearchComponent {
 	}
  
 	setResults(results) {
-		this.results = results.map(res => new Movie(res));
+		this.results = results.map(res => this.movies.createMovie(res));
 	}
 }

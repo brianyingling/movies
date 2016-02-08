@@ -5,10 +5,17 @@ import 'rxjs/add/operator/do';
 
 @Injectable()
 export default class SearchService {
-	constructor(public http: Http, public jsonp: Jsonp) {}
+	baseUrl: string;
+	constructor(public http: Http, public jsonp: Jsonp) {
+		this.baseUrl = "http://www.omdbapi.com/";
+	}
+
+	buildUrl(term): string {
+		return `${this.baseUrl}?s=${term}&y=&plot=short&r=json&callback=JSONP_CALLBACK`;
+	}
 
 	query(term: string) {
-		return this.jsonp.request(`http://www.omdbapi.com/?s=${term}&y=&plot=short&r=json&callback=JSONP_CALLBACK`)
+		return this.jsonp.request(this.buildUrl(term))
 			.map(res => res.json());
 	}
 }

@@ -4,7 +4,8 @@ import {
 	HTTP_PROVIDERS,
 	JSONP_PROVIDERS
 } from 'angular2/http';
-import {SEARCH_PROVIDERS} from './services/SearchService';;
+import {SEARCH_PROVIDERS} from './services/SearchService';
+import {MOVIE_PROVIDERS} from './services/MovieService';
 import SearchComponent from './components/Search/SearchComponent';
 
 @Component({
@@ -21,5 +22,6 @@ class App {}
 bootstrap(App, [
 	HTTP_PROVIDERS,
 	JSONP_PROVIDERS,
-	SEARCH_PROVIDERS
+	SEARCH_PROVIDERS,
+	MOVIE_PROVIDERS
 ]);
