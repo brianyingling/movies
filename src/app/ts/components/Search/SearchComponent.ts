@@ -7,6 +7,7 @@ import {
 	Validators
 } from 'angular2/common';
 
+import 'rxjs/add/operator/filter';
 import Movie from '../../models/movie';
 import SearchService from '../../services/SearchService';
 import MovieService from '../../services/MovieService';
@@ -59,6 +60,7 @@ export default class SearchComponent {
 				err  => this.logError(err),
 				()   => this.completed()
 			);
+
 	}
 
 	logError(err) {
