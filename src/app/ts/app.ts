@@ -1,15 +1,25 @@
 import {Component} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
-import Nav from './components/Nav/nav';
+import {
+	HTTP_PROVIDERS,
+	JSONP_PROVIDERS
+} from 'angular2/http';
+import {SEARCH_PROVIDERS} from './services/SearchService';;
+import SearchComponent from './components/Search/SearchComponent';
 
 @Component({
 	selector: 'app',
-	directives: [Nav],
+	directives: [SearchComponent],
 	template:`
-		<nav></nav>
-		<div>Hello worlds</div>
+		<div>
+			<search></search>
+		</div>
 	`
 })
 class App {}
 
-bootstrap(App);
+bootstrap(App, [
+	HTTP_PROVIDERS,
+	JSONP_PROVIDERS,
+	SEARCH_PROVIDERS
+]);
